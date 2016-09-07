@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+
+        <link rel="stylesheet" href="@Href("~/Shared/styles.css")" type="text/css" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                @RenderPage("~/Shared/_Header.cshtml")
+                @*<h1>This is my header</h1>*@
+            </header>
+            <aside>
+                @*<h2>This is my sidebar</h2>*@
+                @RenderSection("sidebar", false)
+            </aside>
+            <div class="content">
+                @RenderBody()
+            </div>
+            <footer>@RenderPage("~/Shared/_Footer.cshtml")</footer>
+
+        </div>
+    </body>
+</html>

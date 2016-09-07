@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+@section sidebar{
+    <ul>
+        <li>Page 1</li>
+        <li>Page 2</li>
+        <li>Page 3</li>
+    </ul>
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h3>Form</h3>
+        <form>
+            <br/>
+            Name: <input id="txtName" type="text" />
+            <br/><br/>
+            Gender: <input id="rdGenderM" type="radio" value="Male"/>
+                    <input id="rdGenderF" type="radio" value="Female"/>
+            <br/><br/>
+            Age: <input id="txtAge" type="text"/>
+            <br/><br/>
+        </form>
+    </body>
+</html>
