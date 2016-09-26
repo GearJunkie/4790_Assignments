@@ -1,0 +1,13 @@
+﻿@{if (Request.Cookies["Theme"] != null)//check to see if cookie exists
+    {
+        if (Request.Cookies["Theme"].Value == "Dark") //check if selected cookie value == "Dark"
+        {
+            <link href="~/Site2.css" rel="stylesheet"/>
+        }
+    }
+    else
+    {
+        <link href="~/Site.css" rel="stylesheet" />
+    }
+}
+@RenderBody();
