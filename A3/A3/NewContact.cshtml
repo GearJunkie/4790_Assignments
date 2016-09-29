@@ -1,9 +1,78 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
+﻿@using WebMatrix.Data;
 
-    </body>
-</html>
+@{ 
+    var FirstName = "";
+    var LastName = "";
+    var PhoneNumber = "";
+    var Email = "";
+    var PicId = "";
+    var ContactDescription = "";
+    var ContactText = "";
+
+    if(IsPost)
+    {
+        FirstName = Request["FirstName"];
+        LastName = Request["LastName"];
+        PhoneNumber = Request["PhoneNumber"];
+        Email = Request["Email"];
+        PicId = Request["PicID"];
+        ContactDescription = Request["ContactDescription"];
+        ContactText = Request["ContactText"];
+
+        Validation.RequireFields("Firstname", "LastName", "Email");
+
+        if (Validation.IsValid())
+        {
+            try
+            {
+                var db = Database.Open("Contact");
+                db.Execute(SQLInsert, FirstName, LastName, PhoneNumber, Email, PicId, ContactDescription, ContactText);
+                Response.Write("Data Saved!");
+            }
+            catch(Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+        }
+    }
+}
+
+
+
+
+
+<form method="post">
+    <fieldset>
+        <legend>Create New Contact</legend>
+        @Html.ValidationSummary(true)
+        <div>
+            <label>First name</label>
+            <input type="text" value="@FirstName" name="FirstName"/>
+        </div>
+        <div>
+            <label>Last name</label>
+            <input type="text" value="@LastName" name="LastName"/>
+        </div>
+        <div>
+            <label>Phone Number</label>
+            <input type="text" value="@PhoneNumber" name="PhoneNumber"/>
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" value="@Email" name="Email"/>
+        </div>
+        <div>
+            <label>PicID</label>
+            <input type="text" value="@PicId" name="PicId" />
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" value="@ContactDescription" name="ContactDescrption" />
+        </div>
+        <div>
+            <label>Text</label>
+            <input type="text" value="@ContactText" name="ContactText" />
+        </div>
+        <input type="submit" />
+    </fieldset>
+</form>
